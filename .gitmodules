@@ -1,0 +1,6 @@
+[submodule "Ohrogon/Dependencies/atyp"]
+	path = Ohrogon/Dependencies/atyp
+	url = https://github.com/CEbbinghaus/StandardLibary
+[submodule "test/Dependencies/atyp"]
+	path = test/Dependencies/atyp
+	url = https://github.com/cebbinghaus/StandardLibary
