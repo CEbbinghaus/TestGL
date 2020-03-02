@@ -20,7 +20,7 @@ int main() {
 	if (glfwInit() == false)
 		return -1;
 
-	GLFWwindow* window = glfwCreateWindow(1920, 1080, "TestBed", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(1000, 1000, "TestBed", nullptr, nullptr);
 
 	if (window == nullptr) {
 		glfwTerminate(); return -2;
@@ -40,11 +40,19 @@ int main() {
 
 	glClearColor(0.1f, 0.1f, 0.2f, 1.0f);
 
+	Shader shader = Shader();
+	shader.LoadShader("./Shaders/FragShader.frag", Shader::Type::Frag);
+	shader.LoadShader("./Shaders/VertShader.vert", Shader::Type::Vertex);
+	shader.CompileShader();
+	glUseProgram(shader.ProgrammID);
 
-	//glfwWindowShouldClose(window) == 1 && 
+	Mesh m = Primitive::Sphere(50, 50);
+
 	while (!glfwWindowShouldClose(window) && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glfwPollEvents();
+
+		m.draw();
 
 		glfwSwapBuffers(window);
 	}
